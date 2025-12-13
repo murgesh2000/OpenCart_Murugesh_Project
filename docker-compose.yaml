@@ -1,0 +1,83 @@
+services:
+
+  selenium-hub:
+    image: selenium/hub:latest
+    ports:
+      - "4444:4444"
+
+  chrome:
+    image: selenium/node-chrome:latest
+    container_name: chrome
+    depends_on:
+      - selenium-hub
+    shm_size: "2gb"
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+
+  firefox:
+    image: selenium/node-firefox:latest
+    container_name: firefox
+    depends_on:
+      - selenium-hub
+    shm_size: "2gb"
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+
+  edge:
+    image: selenium/node-edge:latest
+    container_name: edge
+    depends_on:
+      - selenium-hub
+    shm_size: "2gb"
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+
+  chrome_video:
+    image: selenium/video:ffmpeg-8.0-20251202
+    depends_on:
+      - chrome
+    volumes:
+      - C:/Users/USER/eclipse-workspace/OpenCart_Murugesh_Project/Vidio_Recordings:/videos
+    environment:
+      - DISPLAY_CONTAINER_NAME=chrome
+      - SE_NODE_GRID_URL=http://selenium-hub:4444
+      - SE_VIDEO_FILE_NAME=auto
+
+  firefox_video:
+    image: selenium/video:ffmpeg-8.0-20251202
+    depends_on:
+      - firefox
+    volumes:
+      - C:/Users/USER/eclipse-workspace/OpenCart_Murugesh_Project/Vidio_Recordings:/videos
+    environment:
+      - DISPLAY_CONTAINER_NAME=firefox
+      - SE_NODE_GRID_URL=http://selenium-hub:4444
+      - SE_VIDEO_FILE_NAME=auto
+
+  edge_video:
+    image: selenium/video:ffmpeg-8.0-20251202
+    depends_on:
+      - edge
+    volumes:
+      - C:/Users/USER/eclipse-workspace/OpenCart_Murugesh_Project/Vidio_Recordings:/videos
+    environment:
+      - DISPLAY_CONTAINER_NAME=edge
+      - SE_NODE_GRID_URL=http://selenium-hub:4444
+      - SE_VIDEO_FILE_NAME=auto
+
+  file_browser:
+    image: filebrowser/filebrowser:latest
+    container_name: file_browser
+    restart: always
+    ports:
+      - "8081:80"
+    volumes:
+      - C:/Users/USER/eclipse-workspace/OpenCart_Murugesh_Project/Vidio_Recordings:/srv
+    environment:
+      - FB_NOAUTH=true
