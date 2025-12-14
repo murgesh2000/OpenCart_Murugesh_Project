@@ -4,15 +4,13 @@
 
 
   <test name="Chrome_Test">
-   <parameter name="os" value="Windows"/>
     <parameter name="browser" value="chrome"/>
     <classes>
       <class name="com.qa.base.testBase"/>
     </classes>
   </test> <!-- Test -->
   
-    <test name="Edge_Test">
-    <parameter name="os" value="Windows"/>
+   <test name="Edge_Test">
     <parameter name="browser" value="edge"/>
     <classes>
       <class name="com.qa.base.testBase"/>
@@ -21,7 +19,6 @@
   
   
    <test name="FireFox_Test">
-   <parameter name="os" value="Windows"/>
     <parameter name="browser" value="firefox"/>
     <classes>
       <class name="com.qa.base.testBase"/>

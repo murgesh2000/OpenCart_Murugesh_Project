@@ -1,168 +1,285 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="3" passed="2" failed="0" skipped="1">
+<testng-results ignored="0" total="3" passed="0" failed="0" skipped="3">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-12-13T16:40:21 IST" name="Suite" finished-at="2025-12-13T16:40:51 IST" duration-ms="29779">
+  <suite started-at="2025-12-14T18:02:57 IST" name="Suite" finished-at="2025-12-14T18:02:57 IST" duration-ms="91">
     <groups>
     </groups>
-    <test started-at="2025-12-13T16:40:21 IST" name="Edge_Test" finished-at="2025-12-13T16:40:24 IST" duration-ms="3739">
+    <test started-at="2025-12-14T18:02:57 IST" name="Chrome_Test" finished-at="2025-12-14T18:02:57 IST" duration-ms="91">
       <class name="com.qa.base.testBase">
-        <test-method is-config="true" signature="intailisation(java.lang.String,java.lang.String)[pri:0, instance:com.qa.base.testBase@65d09a04]" started-at="2025-12-13T16:40:21 IST" name="intailisation" finished-at="2025-12-13T16:40:24 IST" duration-ms="3620" status="FAIL">
+        <test-method is-config="true" signature="intailisation(java.lang.String)[pri:0, instance:com.qa.base.testBase@2aceadd4]" started-at="2025-12-14T18:02:57 IST" name="intailisation" finished-at="2025-12-14T18:02:57 IST" duration-ms="6" status="FAIL">
           <params>
             <param index="0">
-              <value>
-                <![CDATA[Windows]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[edge]]>
-              </value>
-            </param>
-          </params>
-          <exception class="java.lang.RuntimeException">
-            <message>
-              <![CDATA[Invalid browser name]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.RuntimeException: Invalid browser name
-at com.qa.base.testBase.intailisation(testBase.java:73)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:71)
-at org.testng.internal.invokers.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:400)
-at org.testng.internal.invokers.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:333)
-at org.testng.internal.invokers.TestInvoker.runConfigMethods(TestInvoker.java:836)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:601)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
-at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-at org.testng.TestRunner.privateRun(TestRunner.java:741)
-at org.testng.TestRunner.run(TestRunner.java:616)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:463)
-at org.testng.internal.thread.ThreadUtil.lambda$execute$0(ThreadUtil.java:64)
-at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
-at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
-at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
-at java.base/java.lang.Thread.run(Thread.java:1583)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.RuntimeException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- intailisation -->
-        <test-method signature="dummyTest()[pri:0, instance:com.qa.base.testBase@65d09a04]" started-at="2025-12-13T16:40:24 IST" name="dummyTest" finished-at="2025-12-13T16:40:24 IST" duration-ms="0" status="SKIP">
-          <exception class="java.lang.RuntimeException">
-            <message>
-              <![CDATA[Invalid browser name]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.RuntimeException: Invalid browser name
-at com.qa.base.testBase.intailisation(testBase.java:73)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:71)
-at org.testng.internal.invokers.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:400)
-at org.testng.internal.invokers.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:333)
-at org.testng.internal.invokers.TestInvoker.runConfigMethods(TestInvoker.java:836)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:601)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
-at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-at org.testng.TestRunner.privateRun(TestRunner.java:741)
-at org.testng.TestRunner.run(TestRunner.java:616)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:463)
-at org.testng.internal.thread.ThreadUtil.lambda$execute$0(ThreadUtil.java:64)
-at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
-at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
-at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
-at java.base/java.lang.Thread.run(Thread.java:1583)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.RuntimeException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- dummyTest -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.qa.base.testBase@65d09a04]" started-at="2025-12-13T16:40:24 IST" name="tearDown" finished-at="2025-12-13T16:40:24 IST" duration-ms="4" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-      </class> <!-- com.qa.base.testBase -->
-    </test> <!-- Edge_Test -->
-    <test started-at="2025-12-13T16:40:21 IST" name="Chrome_Test" finished-at="2025-12-13T16:40:42 IST" duration-ms="20746">
-      <class name="com.qa.base.testBase">
-        <test-method is-config="true" signature="intailisation(java.lang.String,java.lang.String)[pri:0, instance:com.qa.base.testBase@24aed80c]" started-at="2025-12-13T16:40:21 IST" name="intailisation" finished-at="2025-12-13T16:40:25 IST" duration-ms="4085" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[Windows]]>
-              </value>
-            </param>
-            <param index="1">
               <value>
                 <![CDATA[chrome]]>
               </value>
             </param>
           </params>
+          <exception class="java.lang.NullPointerException">
+            <message>
+              <![CDATA[Cannot invoke "String.equalsIgnoreCase(String)" because the return value of "java.util.Properties.getProperty(String)" is null]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.NullPointerException: Cannot invoke "String.equalsIgnoreCase(String)" because the return value of "java.util.Properties.getProperty(String)" is null
+at com.qa.base.testBase.intailisation(testBase.java:54)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:71)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:400)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:333)
+at org.testng.internal.invokers.TestInvoker.runConfigMethods(TestInvoker.java:836)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:601)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:463)
+at org.testng.internal.thread.ThreadUtil.lambda$execute$0(ThreadUtil.java:64)
+at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+at java.base/java.lang.Thread.run(Thread.java:1583)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.NullPointerException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- intailisation -->
-        <test-method signature="dummyTest()[pri:0, instance:com.qa.base.testBase@24aed80c]" started-at="2025-12-13T16:40:25 IST" name="dummyTest" finished-at="2025-12-13T16:40:40 IST" duration-ms="15321" status="PASS">
+        <test-method signature="dummyTest()[pri:0, instance:com.qa.base.testBase@2aceadd4]" started-at="2025-12-14T18:02:57 IST" name="dummyTest" finished-at="2025-12-14T18:02:57 IST" duration-ms="0" status="SKIP">
+          <exception class="java.lang.NullPointerException">
+            <message>
+              <![CDATA[Cannot invoke "String.equalsIgnoreCase(String)" because the return value of "java.util.Properties.getProperty(String)" is null]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.NullPointerException: Cannot invoke "String.equalsIgnoreCase(String)" because the return value of "java.util.Properties.getProperty(String)" is null
+at com.qa.base.testBase.intailisation(testBase.java:54)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:71)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:400)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:333)
+at org.testng.internal.invokers.TestInvoker.runConfigMethods(TestInvoker.java:836)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:601)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:463)
+at org.testng.internal.thread.ThreadUtil.lambda$execute$0(ThreadUtil.java:64)
+at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+at java.base/java.lang.Thread.run(Thread.java:1583)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.NullPointerException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- dummyTest -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.qa.base.testBase@24aed80c]" started-at="2025-12-13T16:40:40 IST" name="tearDown" finished-at="2025-12-13T16:40:42 IST" duration-ms="1287" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.qa.base.testBase@2aceadd4]" started-at="2025-12-14T18:02:57 IST" name="tearDown" finished-at="2025-12-14T18:02:57 IST" duration-ms="0" status="SKIP">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
       </class> <!-- com.qa.base.testBase -->
     </test> <!-- Chrome_Test -->
-    <test started-at="2025-12-13T16:40:21 IST" name="FireFox_Test" finished-at="2025-12-13T16:40:51 IST" duration-ms="29779">
+    <test started-at="2025-12-14T18:02:57 IST" name="Edge_Test" finished-at="2025-12-14T18:02:57 IST" duration-ms="90">
       <class name="com.qa.base.testBase">
-        <test-method is-config="true" signature="beforeSuit()[pri:0, instance:com.qa.base.testBase@75db5df9]" started-at="2025-12-13T16:40:11 IST" name="beforeSuit" finished-at="2025-12-13T16:40:21 IST" duration-ms="10041" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- beforeSuit -->
-        <test-method is-config="true" signature="intailisation(java.lang.String,java.lang.String)[pri:0, instance:com.qa.base.testBase@75db5df9]" started-at="2025-12-13T16:40:21 IST" name="intailisation" finished-at="2025-12-13T16:40:31 IST" duration-ms="9999" status="PASS">
+        <test-method is-config="true" signature="intailisation(java.lang.String)[pri:0, instance:com.qa.base.testBase@5aebe890]" started-at="2025-12-14T18:02:57 IST" name="intailisation" finished-at="2025-12-14T18:02:57 IST" duration-ms="6" status="FAIL">
           <params>
             <param index="0">
               <value>
-                <![CDATA[Windows]]>
+                <![CDATA[edge]]>
               </value>
             </param>
-            <param index="1">
+          </params>
+          <exception class="java.lang.NullPointerException">
+            <message>
+              <![CDATA[Cannot invoke "String.equalsIgnoreCase(String)" because the return value of "java.util.Properties.getProperty(String)" is null]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.NullPointerException: Cannot invoke "String.equalsIgnoreCase(String)" because the return value of "java.util.Properties.getProperty(String)" is null
+at com.qa.base.testBase.intailisation(testBase.java:54)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:71)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:400)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:333)
+at org.testng.internal.invokers.TestInvoker.runConfigMethods(TestInvoker.java:836)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:601)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:463)
+at org.testng.internal.thread.ThreadUtil.lambda$execute$0(ThreadUtil.java:64)
+at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+at java.base/java.lang.Thread.run(Thread.java:1583)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.NullPointerException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- intailisation -->
+        <test-method signature="dummyTest()[pri:0, instance:com.qa.base.testBase@5aebe890]" started-at="2025-12-14T18:02:57 IST" name="dummyTest" finished-at="2025-12-14T18:02:57 IST" duration-ms="0" status="SKIP">
+          <exception class="java.lang.NullPointerException">
+            <message>
+              <![CDATA[Cannot invoke "String.equalsIgnoreCase(String)" because the return value of "java.util.Properties.getProperty(String)" is null]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.NullPointerException: Cannot invoke "String.equalsIgnoreCase(String)" because the return value of "java.util.Properties.getProperty(String)" is null
+at com.qa.base.testBase.intailisation(testBase.java:54)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:71)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:400)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:333)
+at org.testng.internal.invokers.TestInvoker.runConfigMethods(TestInvoker.java:836)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:601)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:463)
+at org.testng.internal.thread.ThreadUtil.lambda$execute$0(ThreadUtil.java:64)
+at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+at java.base/java.lang.Thread.run(Thread.java:1583)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.NullPointerException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- dummyTest -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.qa.base.testBase@5aebe890]" started-at="2025-12-14T18:02:57 IST" name="tearDown" finished-at="2025-12-14T18:02:57 IST" duration-ms="0" status="SKIP">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.qa.base.testBase -->
+    </test> <!-- Edge_Test -->
+    <test started-at="2025-12-14T18:02:57 IST" name="FireFox_Test" finished-at="2025-12-14T18:02:57 IST" duration-ms="90">
+      <class name="com.qa.base.testBase">
+        <test-method is-config="true" signature="beforeSuit()[pri:0, instance:com.qa.base.testBase@33c911a1]" started-at="2025-12-14T18:02:47 IST" name="beforeSuit" finished-at="2025-12-14T18:02:57 IST" duration-ms="10038" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeSuit -->
+        <test-method is-config="true" signature="intailisation(java.lang.String)[pri:0, instance:com.qa.base.testBase@33c911a1]" started-at="2025-12-14T18:02:57 IST" name="intailisation" finished-at="2025-12-14T18:02:57 IST" duration-ms="7" status="FAIL">
+          <params>
+            <param index="0">
               <value>
                 <![CDATA[firefox]]>
               </value>
             </param>
           </params>
+          <exception class="java.lang.NullPointerException">
+            <message>
+              <![CDATA[Cannot invoke "String.equalsIgnoreCase(String)" because the return value of "java.util.Properties.getProperty(String)" is null]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.NullPointerException: Cannot invoke "String.equalsIgnoreCase(String)" because the return value of "java.util.Properties.getProperty(String)" is null
+at com.qa.base.testBase.intailisation(testBase.java:54)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:71)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:400)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:333)
+at org.testng.internal.invokers.TestInvoker.runConfigMethods(TestInvoker.java:836)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:601)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:463)
+at org.testng.internal.thread.ThreadUtil.lambda$execute$0(ThreadUtil.java:64)
+at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+at java.base/java.lang.Thread.run(Thread.java:1583)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.NullPointerException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- intailisation -->
-        <test-method signature="dummyTest()[pri:0, instance:com.qa.base.testBase@75db5df9]" started-at="2025-12-13T16:40:31 IST" name="dummyTest" finished-at="2025-12-13T16:40:49 IST" duration-ms="18065" status="PASS">
+        <test-method signature="dummyTest()[pri:0, instance:com.qa.base.testBase@33c911a1]" started-at="2025-12-14T18:02:57 IST" name="dummyTest" finished-at="2025-12-14T18:02:57 IST" duration-ms="1" status="SKIP">
+          <exception class="java.lang.NullPointerException">
+            <message>
+              <![CDATA[Cannot invoke "String.equalsIgnoreCase(String)" because the return value of "java.util.Properties.getProperty(String)" is null]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.NullPointerException: Cannot invoke "String.equalsIgnoreCase(String)" because the return value of "java.util.Properties.getProperty(String)" is null
+at com.qa.base.testBase.intailisation(testBase.java:54)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:71)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:400)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:333)
+at org.testng.internal.invokers.TestInvoker.runConfigMethods(TestInvoker.java:836)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:601)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:463)
+at org.testng.internal.thread.ThreadUtil.lambda$execute$0(ThreadUtil.java:64)
+at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+at java.base/java.lang.Thread.run(Thread.java:1583)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.NullPointerException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- dummyTest -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.qa.base.testBase@75db5df9]" started-at="2025-12-13T16:40:49 IST" name="tearDown" finished-at="2025-12-13T16:40:51 IST" duration-ms="1664" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.qa.base.testBase@33c911a1]" started-at="2025-12-14T18:02:57 IST" name="tearDown" finished-at="2025-12-14T18:02:57 IST" duration-ms="0" status="SKIP">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="flush()[pri:0, instance:com.qa.base.testBase@75db5df9]" started-at="2025-12-13T16:40:51 IST" name="flush" finished-at="2025-12-13T16:40:52 IST" duration-ms="1141" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- flush -->
       </class> <!-- com.qa.base.testBase -->
     </test> <!-- FireFox_Test -->
   </suite> <!-- Suite -->
