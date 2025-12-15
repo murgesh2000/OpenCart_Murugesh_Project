@@ -8,66 +8,15 @@
 <body>
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Retried</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
-<tr><th colspan="8">Suite</th></tr>
-<tr><td><a href="#t0">Chrome_Test</a></td><td class="num">0</td><td class="num attn">1</td><td class="num">0</td><td class="num">0</td><td class="num">91</td><td></td><td></td></tr>
-<tr class="stripe"><td><a href="#t1">Edge_Test</a></td><td class="num">0</td><td class="num attn">1</td><td class="num">0</td><td class="num">0</td><td class="num">90</td><td></td><td></td></tr>
-<tr><td><a href="#t2">FireFox_Test</a></td><td class="num">0</td><td class="num attn">1</td><td class="num">0</td><td class="num">0</td><td class="num">90</td><td></td><td></td></tr>
-<tr><th>Total</th><th class="num">0</th><th class="num attn">3</th><th class="num">0</th><th class="num">0</th><th class="num">271</th><th colspan="2"></th></tr>
+<tr><th colspan="8">DockerGridSuite</th></tr>
+<tr><td><a href="#t0">FirefoxTests</a></td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">17</td><td></td><td></td></tr>
+<tr class="stripe"><td><a href="#t1">EdgeTests</a></td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">18</td><td></td><td></td></tr>
+<tr><td><a href="#t2">ChromeTests</a></td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">18</td><td></td><td></td></tr>
+<tr><th>Total</th><th class="num">0</th><th class="num">0</th><th class="num">0</th><th class="num">0</th><th class="num">53</th><th colspan="2"></th></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Chrome_Test &#8212; failed (configuration methods)</th></tr><tr class="failedeven"><td rowspan="1">com.qa.base.testBase</td><td><a href="#m0">intailisation</a></td><td rowspan="1">1765715577602</td><td rowspan="1">6</td></tr><tr><th colspan="4">Chrome_Test &#8212; skipped (configuration methods)</th></tr><tr class="skippedeven"><td rowspan="1">com.qa.base.testBase</td><td><a href="#m1">tearDown</a></td><td rowspan="1">1765715577631</td><td rowspan="1">0</td></tr><tr><th colspan="4">Chrome_Test &#8212; skipped</th></tr><tr class="skippedeven"><td rowspan="1">com.qa.base.testBase</td><td><a href="#m2">dummyTest</a></td><td rowspan="1">1765715577622</td><td rowspan="1">0</td></tr></tbody>
-<tbody id="t1"><tr><th colspan="4">Edge_Test &#8212; failed (configuration methods)</th></tr><tr class="failedeven"><td rowspan="1">com.qa.base.testBase</td><td><a href="#m3">intailisation</a></td><td rowspan="1">1765715577602</td><td rowspan="1">6</td></tr><tr><th colspan="4">Edge_Test &#8212; skipped (configuration methods)</th></tr><tr class="skippedeven"><td rowspan="1">com.qa.base.testBase</td><td><a href="#m4">tearDown</a></td><td rowspan="1">1765715577632</td><td rowspan="1">0</td></tr><tr><th colspan="4">Edge_Test &#8212; skipped</th></tr><tr class="skippedeven"><td rowspan="1">com.qa.base.testBase</td><td><a href="#m5">dummyTest</a></td><td rowspan="1">1765715577623</td><td rowspan="1">0</td></tr></tbody>
-<tbody id="t2"><tr><th colspan="4">FireFox_Test &#8212; failed (configuration methods)</th></tr><tr class="failedeven"><td rowspan="1">com.qa.base.testBase</td><td><a href="#m6">intailisation</a></td><td rowspan="1">1765715577601</td><td rowspan="1">7</td></tr><tr><th colspan="4">FireFox_Test &#8212; skipped (configuration methods)</th></tr><tr class="skippedeven"><td rowspan="1">com.qa.base.testBase</td><td><a href="#m7">tearDown</a></td><td rowspan="1">1765715577634</td><td rowspan="1">0</td></tr><tr><th colspan="4">FireFox_Test &#8212; skipped</th></tr><tr class="skippedeven"><td rowspan="1">com.qa.base.testBase</td><td><a href="#m8">dummyTest</a></td><td rowspan="1">1765715577622</td><td rowspan="1">1</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">DockerGridSuite</th></tr></tbody><tbody id="t0"><tr><th colspan="4" class="invisible"/></tr></tbody>
+<tbody id="t1"><tr><th colspan="4" class="invisible"/></tr></tbody>
+<tbody id="t2"><tr><th colspan="4" class="invisible"/></tr></tbody>
 </table>
-<h2>Chrome_Test</h2><h3 id="m0">com.qa.base.testBase#intailisation</h3><table class="result"><tr class="param"><th>Parameter #1</th></tr><tr class="param stripe"><td>chrome</td></tr><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.NullPointerException: Cannot invoke &quot;String.equalsIgnoreCase(String)&quot; because the return value of &quot;java.util.Properties.getProperty(String)&quot; is null
-	at com.qa.base.testBase.intailisation(testBase.java:54)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-... Removed 19 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m1">com.qa.base.testBase#tearDown</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m2">com.qa.base.testBase#dummyTest</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.NullPointerException: Cannot invoke &quot;String.equalsIgnoreCase(String)&quot; because the return value of &quot;java.util.Properties.getProperty(String)&quot; is null
-	at com.qa.base.testBase.intailisation(testBase.java:54)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-... Removed 19 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h2>Edge_Test</h2><h3 id="m3">com.qa.base.testBase#intailisation</h3><table class="result"><tr class="param"><th>Parameter #1</th></tr><tr class="param stripe"><td>edge</td></tr><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.NullPointerException: Cannot invoke &quot;String.equalsIgnoreCase(String)&quot; because the return value of &quot;java.util.Properties.getProperty(String)&quot; is null
-	at com.qa.base.testBase.intailisation(testBase.java:54)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-... Removed 19 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m4">com.qa.base.testBase#tearDown</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m5">com.qa.base.testBase#dummyTest</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.NullPointerException: Cannot invoke &quot;String.equalsIgnoreCase(String)&quot; because the return value of &quot;java.util.Properties.getProperty(String)&quot; is null
-	at com.qa.base.testBase.intailisation(testBase.java:54)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-... Removed 19 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h2>FireFox_Test</h2><h3 id="m6">com.qa.base.testBase#intailisation</h3><table class="result"><tr class="param"><th>Parameter #1</th></tr><tr class="param stripe"><td>firefox</td></tr><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.NullPointerException: Cannot invoke &quot;String.equalsIgnoreCase(String)&quot; because the return value of &quot;java.util.Properties.getProperty(String)&quot; is null
-	at com.qa.base.testBase.intailisation(testBase.java:54)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-... Removed 19 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m7">com.qa.base.testBase#tearDown</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m8">com.qa.base.testBase#dummyTest</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.NullPointerException: Cannot invoke &quot;String.equalsIgnoreCase(String)&quot; because the return value of &quot;java.util.Properties.getProperty(String)&quot; is null
-	at com.qa.base.testBase.intailisation(testBase.java:54)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-... Removed 19 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-</body>
+<h2>FirefoxTests</h2><h2>EdgeTests</h2><h2>ChromeTests</h2></body>
 </html>

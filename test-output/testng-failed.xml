@@ -1,43 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite thread-count="3" parallel="tests" name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
-  <test thread-count="3" parallel="tests" name="Chrome_Test(failed)">
+<suite parallel="tests" name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" parallel="tests" name="Test(failed)">
     <parameter name="browser" value="chrome"/>
     <classes>
-      <class name="com.qa.base.testBase">
+      <class name="com.qa.TestCart.Login_Test">
         <methods>
           <include name="tearDown"/>
-          <include name="beforeSuit"/>
-          <include name="dummyTest"/>
-          <include name="intailisation"/>
+          <include name="initialization"/>
+          <include name="loginTest"/>
         </methods>
-      </class> <!-- com.qa.base.testBase -->
+      </class> <!-- com.qa.TestCart.Login_Test -->
     </classes>
-  </test> <!-- Chrome_Test(failed) -->
-  <test thread-count="3" parallel="tests" name="Edge_Test(failed)">
-    <parameter name="browser" value="edge"/>
-    <classes>
-      <class name="com.qa.base.testBase">
-        <methods>
-          <include name="tearDown"/>
-          <include name="beforeSuit"/>
-          <include name="dummyTest"/>
-          <include name="intailisation"/>
-        </methods>
-      </class> <!-- com.qa.base.testBase -->
-    </classes>
-  </test> <!-- Edge_Test(failed) -->
-  <test thread-count="3" parallel="tests" name="FireFox_Test(failed)">
-    <parameter name="browser" value="firefox"/>
-    <classes>
-      <class name="com.qa.base.testBase">
-        <methods>
-          <include name="tearDown"/>
-          <include name="beforeSuit"/>
-          <include name="dummyTest"/>
-          <include name="intailisation"/>
-        </methods>
-      </class> <!-- com.qa.base.testBase -->
-    </classes>
-  </test> <!-- FireFox_Test(failed) -->
+  </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

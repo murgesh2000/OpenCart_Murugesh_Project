@@ -1,3 +1,5 @@
+version: "3.9"
+
 services:
 
   selenium-hub:
@@ -52,7 +54,7 @@ services:
     depends_on:
       - chrome
     volumes:
-      - C:/Users/USER/eclipse-workspace/OpenCart_Murugesh_Project/Vidio_Recordings:/videos
+      - ./Vidio_Recordings:/videos
     environment:
       - DISPLAY_CONTAINER_NAME=chrome
       - SE_NODE_GRID_URL=http://selenium-hub:4444
@@ -63,7 +65,7 @@ services:
     depends_on:
       - firefox
     volumes:
-      - C:/Users/USER/eclipse-workspace/OpenCart_Murugesh_Project/Vidio_Recordings:/videos
+      - ./Vidio_Recordings:/videos
     environment:
       - DISPLAY_CONTAINER_NAME=firefox
       - SE_NODE_GRID_URL=http://selenium-hub:4444
@@ -74,7 +76,7 @@ services:
     depends_on:
       - edge
     volumes:
-      - C:/Users/USER/eclipse-workspace/OpenCart_Murugesh_Project/Vidio_Recordings:/videos
+      - ./Vidio_Recordings:/videos
     environment:
       - DISPLAY_CONTAINER_NAME=edge
       - SE_NODE_GRID_URL=http://selenium-hub:4444
@@ -87,6 +89,13 @@ services:
     ports:
       - "8081:80"
     volumes:
-      - C:/Users/USER/eclipse-workspace/OpenCart_Murugesh_Project/Vidio_Recordings:/srv
+      - ./Vidio_Recordings:/srv
     environment:
       - FB_NOAUTH=true
+
+  test-runner:
+    build: .
+    depends_on:
+      - selenium-hub
+    environment:
+      - GRID_URL=http://selenium-hub:4444/wd/hub
