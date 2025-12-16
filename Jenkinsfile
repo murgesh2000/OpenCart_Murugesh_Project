@@ -16,13 +16,16 @@ pipeline {
         }
     }
 
-    post {
-        always {
-            // Stop and remove all containers/networks/volumes defined in compose
-            bat 'docker compose -f docker-compose.yaml down || true'
-
-            // Archive video recordings folder if present
-            archiveArtifacts artifacts: 'Vidio_Recordings/**/*.*', allowEmptyArchive: true
-        }
+post {
+    always {
+        bat '''
+            docker compose -f docker-compose.yaml down
+            if %ERRORLEVEL% NEQ 0 (
+              echo docker compose down failed, ignoring
+            )
+        '''
+        archiveArtifacts artifacts: 'Vidio_Recordings/**/*.*', allowEmptyArchive: true
     }
+}
+
 }
