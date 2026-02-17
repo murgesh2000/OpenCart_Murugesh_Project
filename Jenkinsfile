@@ -14,10 +14,13 @@ pipeline {
 
         stage('Clean Environment') {
             steps {
-                // Change 'sh' to 'bat' for Windows
-                bat 'docker-compose down --remove-orphans'
-                // 2. Extra safety: Specifically remove the file_browser if it's still stuck
-                bat 'docker rm -f file_browser || exit 0'
+                // 1. Forcefully stop and remove EVERYTHING related to this compose file
+                bat 'docker-compose down -v --remove-orphans'
+        
+                 // 2. Wipe out ANY container in the system that is not currently running
+                 // This clears 'firefox', 'chrome', etc., if they are stuck
+                bat 'docker container prune -f'
+        
                 // 3. Clean up old videos
                 bat 'if exist Vidio_Recordings\\*.mp4 del /q Vidio_Recordings\\*.mp4'
             }
