@@ -16,6 +16,10 @@ pipeline {
             steps {
                 // 1. Forcefully stop and remove EVERYTHING related to this compose file
                 bat 'docker-compose down -v --remove-orphans'
+                
+               // Target specific named containers that are causing conflicts
+                 // The '|| exit 0' ensures the pipeline continues even if the container isn't there
+                bat 'docker rm -f chrome firefox edge file_browser || exit 0'
         
                  // 2. Wipe out ANY container in the system that is not currently running
                  // This clears 'firefox', 'chrome', etc., if they are stuck
