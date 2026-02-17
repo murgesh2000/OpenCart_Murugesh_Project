@@ -1,31 +1,41 @@
 pipeline {
     agent any
 
+    environment {
+        // Ensure the Grid URL points to the internal Docker service name
+        GRID_URL = "http://selenium-hub:4444/wd/hub"
+    }
+
     stages {
         stage('Checkout') {
             steps {
+                // Pulls code from the Git repo configured in the Jenkins Job
                 checkout scm
             }
         }
 
-        stage('Start Grid + Run Tests') {
+        stage('Clean Environment') {
             steps {
-                // Build images and start only test-runner + its dependencies
-                bat 'docker compose -f docker-compose.yaml up --build --abort-on-container-exit test-runner'
+                sh 'docker-compose down --remove-orphans'
+                sh 'rm -rf Vidio_Recordings/*.mp4'
+            }
+        }
+
+        stage('Run Automation') {
+            steps {
+                // The --exit-code-from flag is critical for Jenkins to know if tests passed/failed
+                sh 'docker-compose up --build --exit-code-from test-runner'
             }
         }
     }
 
-post {
-    always {
-        bat '''
-            docker compose -f docker-compose.yaml down
-            if %ERRORLEVEL% NEQ 0 (
-              echo docker compose down failed, ignoring
-            )
-        '''
-        archiveArtifacts artifacts: 'Vidio_Recordings/**/*.*', allowEmptyArchive: true
+    post {
+        always {
+            // Archive the videos so you can watch them in the Jenkins UI
+            archiveArtifacts artifacts: 'Vidio_Recordings/*.mp4', allowEmptyArchive: true
+            
+            // Shut down the grid to free up resources
+            sh 'docker-compose down'
+        }
     }
-}
-
 }

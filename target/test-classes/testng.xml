@@ -8,14 +8,14 @@
         </classes>
     </test>
 
-    <!-- <test name="FirefoxTests">
+   <test name="FirefoxTests">
         <parameter name="browser" value="firefox" />
         <classes>
             <class name="com.qa.TestCart.Login_Test" />
         </classes>
-    </test>-->
+    </test>
 
-    <test name="EdgeTests">
+     <test name="EdgeTests">
         <parameter name="browser" value="edge" />
         <classes>
             <class name="com.qa.TestCart.Login_Test" />

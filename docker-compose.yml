@@ -94,6 +94,7 @@ services:
       - FB_NOAUTH=true
 
   test-runner:
+    shm_size: 2gb
     build: .
     depends_on:
       - selenium-hub
