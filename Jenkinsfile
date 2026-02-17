@@ -14,19 +14,24 @@ pipeline {
 
         stage('Clean Environment') {
             steps {
-                // Ignore errors on 'down' if docker is momentarily unreachable
+                // 1. Standard down
                 bat 'docker-compose down -v --remove-orphans || exit 0'
                 
+                // 2. Clear specific containers
                 bat 'docker rm -f chrome firefox edge file_browser || exit 0'
-
-                // Port cleanup (already proven to work!)
-                bat 'for /f "tokens=5" %%a in (\'netstat -ano ^| findstr :4444 ^| findstr LISTENING\') do taskkill /f /pid %%a || exit 0'
-
-                // Add '|| exit 0' here so the build doesn't die if the API is flickering
+        
+                // 3. IMPROVED Port Cleanup: 
+                // We add "2>nul" to hide errors and ensure the block doesn't break the pipeline
+                bat '''
+                    for /f "tokens=5" %%a in ('netstat -ano ^| findstr :4444 ^| findstr LISTENING') do taskkill /f /pid %%a 2>nul || exit 0
+                '''
+        
+                // 4. Global cleanup
                 bat 'docker container prune -f || exit 0'
                 
+                // 5. Video cleanup
                 bat 'if exist Vidio_Recordings\\*.mp4 del /q Vidio_Recordings\\*.mp4'
-            }
+    }
         }
 
         stage('Run Automation') {
