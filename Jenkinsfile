@@ -14,23 +14,25 @@ pipeline {
 
         stage('Clean Environment') {
             steps {
-                // 1. Standard down
-                bat 'docker-compose down -v --remove-orphans || exit 0'
-                
-                // 2. Clear specific containers
-                bat 'docker rm -f chrome firefox edge file_browser || exit 0'
+                bat """
+                    @echo off
+                    echo --- Cleaning Docker Resources ---
+                    docker-compose down -v --remove-orphans 2>nul
+                    docker rm -f chrome firefox edge file_browser 2>nul
+                    
+                    echo --- Checking Port 4444 ---
+                    for /f "tokens=5" %%a in ('netstat -ano ^| findstr :4444 ^| findstr LISTENING') do (
+                        echo Killing process %%a using port 4444
+                        taskkill /f /pid %%a 2>nul
+                    )
         
-                // 3. IMPROVED Port Cleanup: 
-                // We add "2>nul" to hide errors and ensure the block doesn't break the pipeline
-                bat '''
-                    for /f "tokens=5" %%a in ('netstat -ano ^| findstr :4444 ^| findstr LISTENING') do taskkill /f /pid %%a 2>nul || exit 0
-                '''
-        
-                // 4. Global cleanup
-                bat 'docker container prune -f || exit 0'
-                
-                // 5. Video cleanup
-                bat 'if exist Vidio_Recordings\\*.mp4 del /q Vidio_Recordings\\*.mp4'
+                    echo --- Cleaning up Volumes and Videos ---
+                    docker container prune -f 2>nul
+                    if exist Vidio_Recordings\\*.mp4 del /q Vidio_Recordings\\*.mp4
+                    
+                    echo --- Cleanup Finished Successfully ---
+                    exit 0
+                """
     }
         }
 
