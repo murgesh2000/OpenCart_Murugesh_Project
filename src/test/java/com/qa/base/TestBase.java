@@ -6,6 +6,8 @@ import java.net.URL;
 import java.time.Duration;
 import java.util.Properties;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -23,6 +25,7 @@ public class TestBase {
 	// Thread-safe WebDriver for parallel execution
 	private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 	protected static Properties p;
+	public Logger logger;
 
 	public static WebDriver getDriver() {
 		return driver.get();
@@ -52,6 +55,8 @@ public class TestBase {
 		FileReader file = new FileReader(".//src//test//resources//config.properties");
 		p = new Properties();
 		p.load(file);
+
+		logger=LogManager.getLogger(this.getClass());  //lOG4J2
 
 		String executionEnv = p.getProperty("execution_env").trim();
 		WebDriver webDriver;
@@ -87,7 +92,7 @@ public class TestBase {
 			// LOCAL EXECUTION (Uses local drivers like chromedriver.exe)
 			switch (br.toLowerCase()) {
 			case "chrome":
-				webDriver = new ChromeDriver(new ChromeOptions().addArguments("--headless=new"));
+				webDriver = new ChromeDriver(new ChromeOptions().addArguments());
 				break;
 			case "firefox":
 				webDriver = new FirefoxDriver(new FirefoxOptions().addArguments("--headless"));
@@ -106,6 +111,7 @@ public class TestBase {
 		int timeout = executionEnv.equalsIgnoreCase("remote") ? 60 : 20;
 		getDriver().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(timeout));
 		getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		getDriver().get(p.getProperty("appURL"));
 	}
 
 	@AfterMethod(alwaysRun = true)
