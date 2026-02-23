@@ -45,14 +45,53 @@ When the test-runner container starts, it fires the mvn clean test command. Now,
 4.  **Routing Traffic:** As your Java code runs, the tests are sent out of the test-runner container to the selenium-hub (via the ${GRID\_URL} passed from Docker Compose), which distributes the tests to the browser nodes while the video containers record the sessions.
 
 ### Docker & Maven Execution Flowchart (docker-compose.yml -> Dockerfile -> pom.xml)
-
-This maps out what happens under the hood during **Stage 3** of the Jenkins pipeline.
+This maps out what happens under the hood during Stage 3 of the Jenkins pipeline.
 
 Plaintext
+       [ docker-compose up ]
+                 |
+                 v
++---------------------------------------------------+
+|               DOCKER COMPOSE ORCHESTRATION        |
+|                                                   |
+|  1. Starts [ selenium-hub ] (Port 4444)           |
+|         |                                         |
+|  2. Starts browser nodes & connects to hub:       |
+|         ├──> [ chrome ]  <--> [ chrome_video ]    |
+|         ├──> [ firefox ] <--> [ firefox_video ]   |
+|         └──> [ edge ]    <--> [ edge_video ]      |
+|                                                   |
+|  3. Starts [ file_browser ] (Port 8081)           |
+|                                                   |
+|  4. Reaches [ test-runner ] service               |
++---------------------------------------------------+
+                 |
+       (Triggers `build: .`)
+                 |
+                 v
++---------------------------------------------------+
+|               DOCKERFILE EXECUTION                |
+|                                                   |
+|  1. Pulls Maven Base Image                        |
+|  2. Copies pom.xml & caches dependencies          |
+|  3. Copies your hybrid framework code             |
+|  4. Changes config.properties to 'remote'         |
++---------------------------------------------------+
+                 |
+    (Container starts & runs CMD)
+                 |
+                 v
++---------------------------------------------------+
+|               POM.XML EXECUTION                   |
+|                                                   |
+|  1. Executes `mvn clean test`                     |
+|  2. Reads properties (Java 11, testng.xml)        |
+|  3. Surefire plugin triggers TestNG               |
+|  4. Java code sends test commands via RemoteWebDriver
+|     to http://selenium-hub:4444/wd/hub            |
++---------------------------------------------------+
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML       ``[ docker-compose up ]                   |                   v  +---------------------------------------------------+  |               DOCKER COMPOSE ORCHESTRATION        |  |                                                   |  |  1. Starts [ selenium-hub ] (Port 4444)           |  |         |                                         |  |  2. Starts browser nodes & connects to hub:       |  |         ├──> [ chrome ]  <--> [ chrome_video ]    |  |         ├──> [ firefox ] <--> [ firefox_video ]   |  |         └──> [ edge ]    <--> [ edge_video ]      |  |                                                   |  |  3. Starts [ file_browser ] (Port 8081)           |  |                                                   |  |  4. Reaches [ test-runner ] service               |  +---------------------------------------------------+                   |         (Triggers `build: .`)                   |                   v  +---------------------------------------------------+  |               DOCKERFILE EXECUTION                |  |                                                   |  |  1. Pulls Maven Base Image                        |  |  2. Copies pom.xml & caches dependencies          |  |  3. Copies your hybrid framework code             |  |  4. Changes config.properties to 'remote'         |  +---------------------------------------------------+                   |      (Container starts & runs CMD)                   |                   v  +---------------------------------------------------+  |               POM.XML EXECUTION                   |  |                                                   |  |  1. Executes `mvn clean test`                     |  |  2. Reads properties (Java 11, testng.xml)        |  |  3. Surefire plugin triggers TestNG               |  |  4. Java code sends test commands via RemoteWebDriver  |     to http://selenium-hub:4444/wd/hub            |  +---------------------------------------------------+``
-
------------------Jenkins FIle-------------------------------------------------------
+------------------------------------------------Jenkins FIle-------------------------------------------------------
 
 This Jenkinsfile is the final piece of the puzzle. It takes the infrastructure (Docker Compose), environment (Dockerfile), and execution (POM) we just discussed and automates the entire process within a Jenkins pipeline.
 
@@ -104,9 +143,27 @@ After the pipeline finishes—regardless of whether the tests passed or failed�
 
 
 ### Jenkins Pipeline Flowchart (Jenkinsfile)
-
 This represents the high-level steps your Jenkins server takes when a job is triggered.
 
 Plaintext
-
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML``   [ Jenkins Pipeline Trigger ]             |             v  +-----------------------+  | Stage 1: Checkout     | ---> Pulls your latest code from the repository.  +-----------------------+             |             v  +-----------------------+  | Stage 2: Clean Env    | ---> Kills port 4444, removes old Docker containers,   +-----------------------+      and deletes old .mp4 files.             |             v  +-----------------------+  | Stage 3: Run Auto     | ---> Triggers `docker-compose up --build --exit-code-from test-runner`.  +-----------------------+      (See detailed flowchart below)             |             v  +-----------------------+  | Post Actions          | ---> Archives new .mp4 videos from Vidio_Recordings   +-----------------------+      and runs `docker-compose down` to clean up.   ``
+[ Jenkins Pipeline Trigger ]
+           |
+           v
++-----------------------+
+| Stage 1: Checkout     | ---> Pulls your latest code from the repository.
++-----------------------+
+           |
+           v
++-----------------------+
+| Stage 2: Clean Env    | ---> Kills port 4444, removes old Docker containers, 
++-----------------------+      and deletes old .mp4 files.
+           |
+           v
++-----------------------+
+| Stage 3: Run Auto     | ---> Triggers `docker-compose up --build --exit-code-from test-runner`.
++-----------------------+      (See detailed flowchart below)
+           |
+           v
++-----------------------+
+| Post Actions          | ---> Archives new .mp4 videos from Vidio_Recordings 
++-----------------------+      and runs `docker-compose down` to clean up.
