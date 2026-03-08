@@ -1,0 +1,305 @@
+In Selenium automation, the Singleton Design Pattern is most commonly used to ensure that only one instance of the WebDriver exists throughout the entire execution of a test suite.
+
+This prevents your code from accidentally opening five different browser windows when you only meant to open one.
+
+1. The Core Rules of a Singleton
+To make a class a Singleton, it must follow three strict rules:
+
+Private Constructor: Prevents other classes from using new MyClass().
+
+Private Static Instance: A variable that holds the single instance of the class.
+
+Public Static Getter: A method (usually called getInstance()) that provides access to that instance.
+
+2. Java Implementation (Thread-Safe)
+In a modern automation framework, you often run tests in parallel. Therefore, your Singleton must be thread-safe to prevent two threads from creating two different drivers simultaneously.
+
+-----------------------------------------------------------------------------------------------------
+A word of caution: Singletons can make parallel testing tricky if you aren't careful. For true parallel execution where each test needs its own unique browser, we usually evolve this pattern into a ThreadLocal Singleton.
+
+--------------------------------------------------------------------------------------------------------
+
+In a standard Singleton, one instance is shared by the entire JVM. In modern Selenium frameworks, we usually want to run tests in parallel. If two tests share the same WebDriver instance, they will fight for control of the same browser window—one clicks a button while the other tries to type, leading to a "StaleElementReferenceException" or a total crash.
+
+ThreadLocal solves this by providing a "storage locker" for each thread. Every thread gets its own unique instance of the WebDriver, and they never interfere with each other.
+
+1. The Architecture
+Think of a ThreadLocal Singleton as a map where the Key is the Thread ID and the Value is the WebDriver instance.
+
+Java Implementation
+Java
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class DriverManager {
+
+    // 1. Create a ThreadLocal variable to hold the WebDriver
+    private static ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
+
+    // 2. Private constructor to prevent instantiation
+    private DriverManager() {}
+
+    // 3. Method to get the driver for the CURRENT thread
+    public static WebDriver getDriver() {
+        if (driverThreadLocal.get() == null) {
+            // If this thread doesn't have a driver yet, create one
+            driverThreadLocal.set(new ChromeDriver());
+        }
+        return driverThreadLocal.get();
+    }
+
+    // 4. Method to quit and cleanup the driver for the CURRENT thread
+    public static void quitDriver() {
+        if (driverThreadLocal.get() != null) {
+            driverThreadLocal.get().quit();
+            driverThreadLocal.remove(); // Essential to prevent memory leaks!
+        }
+    }
+}
+2. Why "remove()" is Critical
+In Java, threads are often reused (especially in TestNG or JUnit thread pools). If you don't call driverThreadLocal.remove(), the old driver reference stays in memory even after the browser closes. This can lead to Memory Leaks and "Session ID is null" errors when the next test tries to use that "dirty" thread.
+
+3. Using it with TestNG
+This pattern shines when you set parallel="methods" or parallel="tests" in your testng.xml.
+
+Java
+public class BaseTest {
+    @BeforeMethod
+    public void setUp() {
+        WebDriver driver = DriverManager.getDriver();
+        driver.get("https://google.com");
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        DriverManager.quitDriver();
+    }
+}
+
+-------------------------------
+
+In your provided TestBase class, you have successfully implemented a ThreadLocal Singleton Pattern.
+
+While it doesn't look like a classic "Manager" class, it follows the singleton logic specifically designed for parallel test execution. Here is the breakdown of how you used it and why it’s structured this way.
+
+1. How you applied the Singleton Pattern
+In a standard Singleton, you have one instance for the whole app. In your code, you’ve used a Thread-Safe Singleton by using ThreadLocal.
+
+The "Private" Storage
+Java
+private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+This is your Single Instance variable. Even though multiple threads run at once, each thread can only see one WebDriver instance—its own.
+
+The "Getter" Method
+Java
+public static WebDriver getDriver() {
+    return driver.get();
+}
+This is your Global Access Point. Instead of passing the driver object from method to method, any class in your framework can simply call TestBase.getDriver() to get the current thread's browser.
+
+2. Why this is better than a "Standard" Singleton
+If you had used a basic Singleton (like the one we discussed earlier), your code would fail as soon as you tried to run those 5 browsers in parallel.
+
+Standard Singleton: Thread A opens Chrome. Thread B tries to open Firefox and overwrites Thread A's driver. Thread A crashes.
+
+Your Code: Thread A calls driver.set(). Thread B calls driver.set(). Because of ThreadLocal, these two objects exist in completely separate "memory pockets."
+
+3. Key Observations in your Code
+The "Lazy Initialization" (Sort of)
+In your @BeforeMethod, you perform the logic that decides whether to create a RemoteWebDriver (for Docker/Grid) or a local ChromeDriver. This is where the "creation" part of the pattern happens.
+
+The Cleanup (Crucial!)
+Java
+driver.remove();
+In your tearDown, you included driver.remove(). This is excellent practice. It wipes the "Single Instance" for that thread after the test is done. Without this, if TestNG reuses that thread for a new test, you might run into memory leaks or "Session ID is null" errors.
+
+4. One Small Recommendation
+Your Properties p variable is currently marked as protected static:
+
+Java
+protected static Properties p;
+Since multiple threads might try to read the properties file at the exact same time during initialization, static is fine for reading. However, if any test ever modifies a property during runtime, it will affect all other running tests. Usually, it's safer to load properties once in a @BeforeSuite or keep them as a non-static member if they change.
+
+Summary of your implementation:
+Pattern: ThreadLocal Singleton.
+
+Purpose: Parallel execution safety.
+
+State: Correct and well-implemented. It is particularly robust because it handles the switch between local and remote (Docker) environments seamlessly.
+
+
+Moving your driver logic into a dedicated DriverManager class is a hallmark of a professional-grade framework. It follows the Single Responsibility Principle: your TestBase manages the test lifecycle, while the DriverManager manages the browser instance.
+
+Here is how to refactor your code into a clean, reusable utility.
+
+
+Why this is a "Pro" Move
+Cleaner Code: Your TestBase is no longer cluttered with ThreadLocal boilerplate.
+
+Global Access: In your Page Object classes, you no longer need to pass the driver through constructors. You can just call DriverManager.getDriver() directly inside your page methods.
+
+Maintenance: If you ever want to switch from ThreadLocal to a different management system (like a Driver Factory), you only have to change it in one class (DriverManager).
+
+
+Since you have now created a separate DriverManager class, your TestBase needs a quick cleanup to actually use it. Currently, you have two separate ThreadLocal storage areas—one in TestBase and one in DriverManager—which will cause conflicts or NullPointerExceptions.
+
+Here is the refactored code to link them correctly.
+
+1. Updated TestBase.java
+You should remove the ThreadLocal declaration and the getDriver() method from this class and instead call the DriverManager methods.
+
+Java
+package com.qa.base;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.net.URL;
+import java.time.Duration;
+import java.util.Properties;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
+
+public class TestBase {
+
+    // REMOVED: ThreadLocal driver and getDriver() method (Now in DriverManager)
+    protected static Properties p;
+    public Logger logger;
+
+    private String resolveGridUrl() {
+        String envUrl = System.getenv("GRID_URL");
+        if (envUrl != null && !envUrl.isEmpty()) {
+            return envUrl;
+        }
+        if (new java.io.File("/proc/1/cgroup").exists()) {
+            return "http://selenium-hub:4444/wd/hub";
+        }
+        return "http://localhost:4444/wd/hub";
+    }
+
+    @BeforeMethod
+    @Parameters({ "browser" })
+    public void initialization(String br) throws IOException {
+        FileReader file = new FileReader(".//src//test//resources//config.properties");
+        p = new Properties();
+        p.load(file);
+
+        logger = LogManager.getLogger(this.getClass());
+
+        String executionEnv = p.getProperty("execution_env").trim();
+        WebDriver webDriver;
+
+        if (executionEnv.equalsIgnoreCase("remote")) {
+            String gridUrl = resolveGridUrl();
+            switch (br.toLowerCase()) {
+                case "chrome":
+                    ChromeOptions chrome = new ChromeOptions();
+                    chrome.setCapability("se:recordVideo", true);
+                    webDriver = new RemoteWebDriver(new URL(gridUrl), chrome);
+                    break;
+                case "firefox":
+                    FirefoxOptions firefox = new FirefoxOptions();
+                    firefox.setCapability("se:recordVideo", true);
+                    webDriver = new RemoteWebDriver(new URL(gridUrl), firefox);
+                    break;
+                case "edge":
+                    EdgeOptions edge = new EdgeOptions();
+                    edge.setCapability("se:recordVideo", true);
+                    webDriver = new RemoteWebDriver(new URL(gridUrl), edge);
+                    break;
+                default:
+                    throw new RuntimeException("Unsupported Remote Browser: " + br);
+            }
+        } else {
+            switch (br.toLowerCase()) {
+                case "chrome":
+                    webDriver = new ChromeDriver();
+                    break;
+                case "firefox":
+                    webDriver = new FirefoxDriver(new FirefoxOptions().addArguments("--headless"));
+                    break;
+                case "edge":
+                    webDriver = new EdgeDriver(new EdgeOptions().addArguments("--headless=new"));
+                    break;
+                default:
+                    throw new RuntimeException("Unsupported Local Browser: " + br);
+            }
+        }
+
+        // UPDATED: Set the driver in DriverManager
+        DriverManager.setDriver(webDriver);
+
+        // UPDATED: Use DriverManager.getDriver() for setup
+        DriverManager.getDriver().manage().window().maximize();
+
+        int timeout = executionEnv.equalsIgnoreCase("remote") ? 60 : 20;
+        DriverManager.getDriver().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(timeout));
+        DriverManager.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        DriverManager.getDriver().get(p.getProperty("appURL"));
+    }
+
+    @AfterMethod(alwaysRun = true)
+    public void tearDown() {
+        // UPDATED: Use the central unload method
+        DriverManager.unload();
+    }
+}
+2. Updated DriverManager.java
+Make sure you have the correct imports, especially org.openqa.selenium.WebDriver.
+
+Java
+package com.qa.base;
+
+import org.openqa.selenium.WebDriver;
+
+public class DriverManager {
+    
+    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+
+    private DriverManager() {}
+
+    public static WebDriver getDriver() {
+        return driver.get();
+    }
+
+    public static void setDriver(WebDriver driverInstance) {
+        driver.set(driverInstance);
+    }
+
+    public static void unload() {
+        if (driver.get() != null) {
+            driver.get().quit();
+            driver.remove();
+        }
+    }
+}
+What did we improve?
+Separation of Concerns: TestBase only worries about "How to build the driver." DriverManager only worries about "How to store the driver."
+
+Safety: By removing the driver variable from TestBase, you ensure that there is only one source of truth for the WebDriver across your entire framework.
+
+Ease of Use: If you write a new class (like a Utility class), you can just call DriverManager.getDriver() without needing to extend TestBase.
+
+
+Constructor Simplicity: You don't have to keep a WebDriver instance in every Page Object class.
+
+Method Flexibility: If you create a utility method (like a "Screenshot" or "JavaScript Click" helper), you can call DriverManager.getDriver() inside it without needing to pass the driver as a parameter every time.
+
+Reduced Errors: Since you are a Software Quality Engineer with experience in building automated frameworks, you know that passing objects through many layers can lead to NullPointerExceptions if one step is missed. This pattern removes that risk by using a central "Source of Truth."
+
+
+Why this works for Parallel Testing
+Because you are using ThreadLocal in your DriverManager, when Thread-1 calls getDriver(), it gets Chrome-1. When Thread-2 calls it, it gets Chrome-2. Even though the code looks like it's calling a "global" method, the values remain isolated to the specific test execution thread.
+
+Would you like me to help you create a Thread-Safe Extent Report utility that uses this DriverManager to automatically attach screenshots when a test fails?

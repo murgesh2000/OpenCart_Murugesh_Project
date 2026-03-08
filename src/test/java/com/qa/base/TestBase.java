@@ -22,26 +22,17 @@ import org.testng.annotations.Parameters;
 
 public class TestBase {
 
-	// Thread-safe WebDriver for parallel execution
-	private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+	// REMOVED: ThreadLocal driver and getDriver() method (Now in DriverManager)
 	protected static Properties p;
 	public Logger logger;
 
-	public static WebDriver getDriver() {
-		return driver.get();
-	}
+	
 
-	/**
-	 * Determines the Grid URL. 
-	 * Priority: Environment Variable > Docker Internal DNS > Localhost
-	 */
 	private String resolveGridUrl() {
 		String envUrl = System.getenv("GRID_URL");
 		if (envUrl != null && !envUrl.isEmpty()) {
 			return envUrl;
 		}
-
-		// Check if running inside a container
 		if (new java.io.File("/proc/1/cgroup").exists()) {
 			return "http://selenium-hub:4444/wd/hub";
 		}
@@ -56,22 +47,17 @@ public class TestBase {
 		p = new Properties();
 		p.load(file);
 
-		logger=LogManager.getLogger(this.getClass());  //lOG4J2
+		logger = LogManager.getLogger(this.getClass());
 
 		String executionEnv = p.getProperty("execution_env").trim();
 		WebDriver webDriver;
 
-		System.out.println("Execution Mode: " + executionEnv.toUpperCase());
-		System.out.println("Target Browser: " + br);
-
 		if (executionEnv.equalsIgnoreCase("remote")) {
 			String gridUrl = resolveGridUrl();
-			System.out.println("Connecting to Selenium Grid: " + gridUrl);
-
+			System.out.println("---->"+gridUrl);
 			switch (br.toLowerCase()) {
 			case "chrome":
 				ChromeOptions chrome = new ChromeOptions();
-				// Enable video recording capability for the 'selenium/video' containers
 				chrome.setCapability("se:recordVideo", true);
 				webDriver = new RemoteWebDriver(new URL(gridUrl), chrome);
 				break;
@@ -89,10 +75,9 @@ public class TestBase {
 				throw new RuntimeException("Unsupported Remote Browser: " + br);
 			}
 		} else {
-			// LOCAL EXECUTION (Uses local drivers like chromedriver.exe)
 			switch (br.toLowerCase()) {
 			case "chrome":
-				webDriver = new ChromeDriver(new ChromeOptions().addArguments());
+				webDriver = new ChromeDriver();
 				break;
 			case "firefox":
 				webDriver = new FirefoxDriver(new FirefoxOptions().addArguments("--headless"));
@@ -105,20 +90,24 @@ public class TestBase {
 			}
 		}
 
-		driver.set(webDriver);
-		getDriver().manage().window().maximize();
+		// UPDATED: Set the driver in DriverManager
+		DriverManager.setDriver(webDriver);
+
+		// UPDATED: Use DriverManager.getDriver() for setup
+		DriverManager.getDriver().manage().window().maximize();
 
 		int timeout = executionEnv.equalsIgnoreCase("remote") ? 60 : 20;
-		getDriver().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(timeout));
-		getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		getDriver().get(p.getProperty("appURL"));
+		DriverManager.getDriver().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(timeout));
+		DriverManager.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		DriverManager.getDriver().get(p.getProperty("appURL"));
 	}
 
-	@AfterMethod(alwaysRun = true)
-	public void tearDown() {
-		if (getDriver() != null) {
-			getDriver().quit();
-			driver.remove();
-		}
+
+
+	@AfterMethod
+	public void afterMethod()
+	{
+		DriverManager.unload();
 	}
+
 }

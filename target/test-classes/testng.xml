@@ -1,5 +1,9 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="DockerGridSuite" parallel="tests" thread-count="1">
+<listeners>
+	<listener class-name="com.qa.utils.ReporterListeners"></listener>
+</listeners>
+
 
     <test name="ChromeTests">
         <parameter name="browser" value="chrome" />
