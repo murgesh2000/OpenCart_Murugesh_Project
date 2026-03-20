@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
+<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-03-08T12:46:11 IST" name="DockerGridSuite" finished-at="2026-03-08T12:46:26 IST" duration-ms="14690">
+  <suite started-at="2026-03-13T18:45:25 IST" name="MasterSuite" finished-at="2026-03-13T18:45:35 IST" duration-ms="10307">
     <groups>
     </groups>
-    <test started-at="2026-03-08T12:46:11 IST" name="ChromeTests" finished-at="2026-03-08T12:46:26 IST" duration-ms="14690">
+    <test started-at="2026-03-13T18:45:25 IST" name="ChromeTests" finished-at="2026-03-13T18:45:30 IST" duration-ms="4917">
       <class name="com.qa.TestCase.TC_001_HomePageTest">
-        <test-method is-config="true" signature="initialization(java.lang.String)[pri:0, instance:com.qa.TestCase.TC_001_HomePageTest@4c402120]" started-at="2026-03-08T12:46:12 IST" name="initialization" finished-at="2026-03-08T12:46:16 IST" duration-ms="3637" status="PASS">
+        <test-method is-config="true" signature="initialization(java.lang.String)[pri:0, instance:com.qa.TestCase.TC_001_HomePageTest@4c402120]" started-at="2026-03-13T18:45:25 IST" name="initialization" finished-at="2026-03-13T18:45:29 IST" duration-ms="3344" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -18,76 +18,38 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initialization -->
-        <test-method signature="homePage_Test()[pri:0, instance:com.qa.TestCase.TC_001_HomePageTest@4c402120]" started-at="2026-03-08T12:46:16 IST" name="homePage_Test" finished-at="2026-03-08T12:46:26 IST" duration-ms="10168" status="FAIL">
-          <exception class="org.openqa.selenium.NoSuchElementException">
-            <message>
-              <![CDATA[no such element: Unable to locate element: {"method":"xpath","selector":"//div[@class='header-logo']/child::a/imgl"}
-  (Session info: chrome=145.0.7632.160)
-For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
-Build info: version: '4.40.0', revision: 'b3333f1'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.8'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [22a45cb5d77ac9009b649bea2425e25e, findElement {value=//div[@class='header-logo']/child::a/imgl, using=xpath}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 145.0.7632.160, chrome: {chromedriverVersion: 145.0.7632.117 (de4e5d6e13b..., userDataDir: C:\Users\cshan\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:60415}, goog:processID: 20024, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:60415/devtoo..., se:cdpVersion: 145.0.7632.160, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 22a45cb5d77ac9009b649bea2425e25e]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//div[@class='header-logo']/child::a/imgl"}
-  (Session info: chrome=145.0.7632.160)
-For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
-Build info: version: '4.40.0', revision: 'b3333f1'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.8'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [22a45cb5d77ac9009b649bea2425e25e, findElement {value=//div[@class='header-logo']/child::a/imgl, using=xpath}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 145.0.7632.160, chrome: {chromedriverVersion: 145.0.7632.117 (de4e5d6e13b..., userDataDir: C:\Users\cshan\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:60415}, goog:processID: 20024, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:60415/devtoo..., se:cdpVersion: 145.0.7632.160, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 22a45cb5d77ac9009b649bea2425e25e
-at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:169)
-at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:142)
-at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:223)
-at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
-at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
-at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:601)
-at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:166)
-at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:424)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:418)
-at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:68)
-at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
-at jdk.proxy2/jdk.proxy2.$Proxy30.isDisplayed(Unknown Source)
-at com.qa.pageObjects.HomePage.islogoAvailable(HomePage.java:26)
-at com.qa.TestCase.TC_001_HomePageTest.homePage_Test(TC_001_HomePageTest.java:20)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
-at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-at org.testng.TestRunner.privateRun(TestRunner.java:741)
-at org.testng.TestRunner.run(TestRunner.java:616)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:463)
-at org.testng.internal.thread.ThreadUtil.lambda$execute$0(ThreadUtil.java:64)
-at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
-at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
-at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
-at java.base/java.lang.Thread.run(Thread.java:1583)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
+        <test-method signature="homePage_Test()[pri:0, instance:com.qa.TestCase.TC_001_HomePageTest@4c402120]" started-at="2026-03-13T18:45:29 IST" name="homePage_Test" finished-at="2026-03-13T18:45:29 IST" duration-ms="703" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- homePage_Test -->
-        <test-method is-config="true" signature="afterMethod()[pri:0, instance:com.qa.TestCase.TC_001_HomePageTest@4c402120]" started-at="2026-03-08T12:46:26 IST" name="afterMethod" finished-at="2026-03-08T12:46:26 IST" duration-ms="411" status="PASS">
+        <test-method is-config="true" signature="afterMethod()[pri:0, instance:com.qa.TestCase.TC_001_HomePageTest@4c402120]" started-at="2026-03-13T18:45:29 IST" name="afterMethod" finished-at="2026-03-13T18:45:30 IST" duration-ms="482" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
       </class> <!-- com.qa.TestCase.TC_001_HomePageTest -->
     </test> <!-- ChromeTests -->
-  </suite> <!-- DockerGridSuite -->
+    <test started-at="2026-03-13T18:45:25 IST" name="FirefoxTests" finished-at="2026-03-13T18:45:35 IST" duration-ms="10307">
+      <class name="com.qa.TestCase.TC_001_HomePageTest">
+        <test-method is-config="true" signature="initialization(java.lang.String)[pri:0, instance:com.qa.TestCase.TC_001_HomePageTest@79d8407f]" started-at="2026-03-13T18:45:25 IST" name="initialization" finished-at="2026-03-13T18:45:33 IST" duration-ms="7746" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[firefox]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initialization -->
+        <test-method signature="homePage_Test()[pri:0, instance:com.qa.TestCase.TC_001_HomePageTest@79d8407f]" started-at="2026-03-13T18:45:33 IST" name="homePage_Test" finished-at="2026-03-13T18:45:33 IST" duration-ms="162" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- homePage_Test -->
+        <test-method is-config="true" signature="afterMethod()[pri:0, instance:com.qa.TestCase.TC_001_HomePageTest@79d8407f]" started-at="2026-03-13T18:45:33 IST" name="afterMethod" finished-at="2026-03-13T18:45:35 IST" duration-ms="2029" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+      </class> <!-- com.qa.TestCase.TC_001_HomePageTest -->
+    </test> <!-- FirefoxTests -->
+  </suite> <!-- MasterSuite -->
 </testng-results>

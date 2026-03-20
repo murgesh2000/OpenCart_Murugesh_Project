@@ -4,8 +4,8 @@
   <listeners>
     <listener class-name="com.qa.utils.ReporterListeners"/>
   </listeners>
-  <test thread-count="1" parallel="tests" name="ChromeTests(failed)">
-    <parameter name="browser" value="chrome"/>
+  <test thread-count="1" parallel="tests" name="EdgeTests(failed)">
+    <parameter name="browser" value="edge"/>
     <classes>
       <class name="com.qa.TestCase.TC_001_HomePageTest">
         <methods>
@@ -15,5 +15,5 @@
         </methods>
       </class> <!-- com.qa.TestCase.TC_001_HomePageTest -->
     </classes>
-  </test> <!-- ChromeTests(failed) -->
+  </test> <!-- EdgeTests(failed) -->
 </suite> <!-- Failed suite [DockerGridSuite] -->

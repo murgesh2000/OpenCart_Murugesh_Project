@@ -3,11 +3,16 @@ package com.qa.pageObjects;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
-public class HomePage extends basePage {
+import com.qa.base.DriverManager;
+import com.qa.utils.GenericFunctions;
+
+public class HomePage extends GenericFunctions {
 
 	public HomePage(WebDriver driver) {
-		super(driver);
+		super();
+		PageFactory.initElements(DriverManager.getDriver(), this);
 	}
 
 
